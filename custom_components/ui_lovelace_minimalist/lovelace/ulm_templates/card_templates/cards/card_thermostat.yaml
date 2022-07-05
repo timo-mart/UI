@@ -40,11 +40,27 @@ card_thermostat:
     - operator: "template"
       value: >
         [[[
-          return entity.state != 'off'
+          return (entity.attributes.hvac_action == 'heating')
         ]]]
       styles:
         card:
           - background-color: "rgba(var(--color-background-yellow),var(--opacity-bg))"
+    - operator: "template"
+      value: >
+        [[[
+          return (entity.attributes.hvac_action == 'cooling')
+        ]]]
+      styles:
+        card:
+          - background-color: "rgba(var(--color-background-blue),var(--opacity-bg))"
+    - operator: "template"
+      value: >
+        [[[
+          return entity.state != 'off'
+        ]]]
+      styles:
+        card:
+          - background-color: "rgba(var(--color-background-grey),var(--opacity-bg))"
   styles:
     grid:
       - grid-template-areas: >
